@@ -1,0 +1,156 @@
+2025-04-15 15:32:21,748 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:32:26,660 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:32:32,357 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:32:32,358 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:32:47,702 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:32:51,168 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:32:51,169 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:32:57,939 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:32:57,940 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:33:48,031 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:33:52,330 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:33:52,330 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:33:56,687 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:34:33,093 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:34:49,053 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:34:49,054 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:34:57,681 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:34:57,681 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:35:12,854 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:36:10,102 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:36:12,944 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:36:12,945 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:36:12,978 - django.request - ERROR - Internal Server Error: /time/
+Traceback (most recent call last):
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py", line 28, in get_time
+    response, status_code = handle_api_request(request_info, mediator)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 392, in handle_api_request
+    mediation_result = mediator.mediate_request(request)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 341, in mediate_request
+    features_df = self._extract_features(request, log_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 88, in _extract_features
+    features['service'] = self._encode_service(log_data.get('service', 'unknown'))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 163, in _encode_service
+    return service_map.get(service.lower(), 8)
+                           ^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+2025-04-15 15:37:17,049 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:37:22,349 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:37:22,350 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:37:22,381 - django.request - ERROR - Internal Server Error: /time/
+Traceback (most recent call last):
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py", line 28, in get_time
+    response, status_code = handle_api_request(request_info, mediator)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 397, in handle_api_request
+    mediation_result = mediator.mediate_request(request)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 343, in mediate_request
+    log_data = self._extract_log_data(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 211, in _extract_log_data
+    'state': self._encode_state('con'),  # Connection state
+             ^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnomalyDetectionMediator' object has no attribute '_encode_state'
+2025-04-15 15:37:35,102 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:37:37,912 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:37:37,912 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:37:37,951 - django.request - ERROR - Internal Server Error: /time/
+Traceback (most recent call last):
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py", line 28, in get_time
+    response, status_code = handle_api_request(request_info, mediator)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 396, in handle_api_request
+    mediation_result = mediator.mediate_request(request)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 345, in mediate_request
+    features_df = self._extract_features(request, log_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 89, in _extract_features
+    features['state'] = self._encode_state(log_data.get('state', 'unknown'))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 174, in _encode_state
+    return state_map.get(state.lower(), 6)
+                         ^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+2025-04-15 15:38:13,297 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:38:19,200 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:38:19,201 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:38:19,228 - django.request - ERROR - Internal Server Error: /time/
+Traceback (most recent call last):
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py", line 28, in get_time
+    response, status_code = handle_api_request(request_info, mediator)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 392, in handle_api_request
+    mediation_result = mediator.mediate_request(request)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 341, in mediate_request
+    features_df = self._extract_features(request, log_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 88, in _extract_features
+    features['service'] = self._encode_service(log_data.get('service', 'unknown'))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py", line 163, in _encode_service
+    return service_map.get(str(service.lower()), 8)
+                               ^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+2025-04-15 15:38:35,198 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:38:56,758 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:42:59,148 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:43:07,035 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:43:07,036 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:43:07,036 - anomaly_detector - INFO - Allowed request from non-monitored origin unknown
+2025-04-15 15:43:23,615 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:43:26,817 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:43:26,818 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:43:26,832 - anomaly_detector - ERROR - Error predicting anomaly: could not convert string to float: ''
+2025-04-15 15:43:40,524 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:43:46,281 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:43:46,282 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:43:46,286 - anomaly_detector - ERROR - Error predicting anomaly: could not convert string to float: ''
+2025-04-15 15:44:15,584 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:44:21,159 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:44:21,159 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:44:21,166 - anomaly_detector - ERROR - Error predicting anomaly: could not convert string to float: ''
+2025-04-15 15:45:33,727 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:45:58,299 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:47:49,288 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
+2025-04-15 15:47:58,454 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:47:58,455 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:47:58,475 - anomaly_detector - ERROR - Error predicting anomaly: could not convert string to float: ''
+2025-04-15 15:48:40,162 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:48:44,617 - anomaly_detector - INFO - Successfully loaded model from rf_model.pkl
+2025-04-15 15:48:44,618 - anomaly_detector - INFO - Loaded blocklist with 0 IPs
+2025-04-15 15:48:44,625 - anomaly_detector - ERROR - Error predicting anomaly: could not convert string to float: ''
+2025-04-15 15:48:50,872 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:53:28,369 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:53:34,148 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\main.py changed, reloading.
+2025-04-15 15:55:12,324 - django.utils.autoreload - INFO - C:\Users\benab\OneDrive - iitkgp.ac.in\Desktop\Sem 6\Information Systems Lab\server\server\home\views.py changed, reloading.
