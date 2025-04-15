@@ -14,106 +14,66 @@ import numpy as np
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-def transform_network_log_data(df):
-    """
-    Transform a dataframe containing 42 network log features into a dataframe with 56 features
-    by one-hot encoding categorical variables (proto, service, state) and applying preprocessing.
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+def preprocess_df(df):
+    # 1. Drop columns not needed for training
     
-    Parameters:
-    df (pandas.DataFrame): Input dataframe with 42 features
+    # 2. Clamp extreme values in numeric columns
+    df_numeric = df.select_dtypes(include=[np.number])
+    for feature in df_numeric.columns:
+        if df_numeric[feature].max() > 10 * df_numeric[feature].median() and df_numeric[feature].max() > 10:
+            df[feature] = np.where(
+                df[feature] < df[feature].quantile(0.95),
+                df[feature],
+                df[feature].quantile(0.95)
+            )
     
-    Returns:
-    numpy.ndarray: Transformed data with 56 features
-    list: Feature names in the transformed data
-    """
-    # Check if we have the expected number of input features
-    if len(df.columns) != 42:
-        raise ValueError(f"Expected 42 features, but got {len(df.columns)}")
+    # 3. Log transform highly skewed numeric features
+    for feature in df_numeric.columns:
+        if df_numeric[feature].nunique() > 50:
+            if df_numeric[feature].min() == 0:
+                df[feature] = np.log(df[feature] + 1)
+            else:
+                df[feature] = np.log(df[feature])
     
-    # Create a new dataframe with specific structure needed for the transformation
-    # Assuming the first columns need to be categorical for one-hot encoding
-    # This mimics the structure in the original code where categorical columns were at positions 1, 2, 3
-    # First, identify categorical columns - typical ones in network logs are proto, service, state
-    categorical_columns = []
+    # 4. Simplify high-cardinality categorical features
+    df_cat = df.select_dtypes(exclude=[np.number])
+    for feature in df_cat.columns:
+        if df_cat[feature].nunique() > 6:
+            top_values = df[feature].value_counts().head().index
+            df[feature] = np.where(df[feature].isin(top_values), df[feature], '-')
     
-    # Create a structured dataframe for processing
-    # In network data, typically proto, service, and state are categorical
-    # We'll place these as the first 3 columns
-    transformed_df = pd.DataFrame()
+    # 5. Separate features and target
+    X = df # All columns except the last as features
     
-    # Add the proto column (assuming it exists in input df)
-    if 'proto' in df.columns:
-        transformed_df['proto'] = df['proto']
-        categorical_columns.append('proto')
-    else:
-        # Create a placeholder if the original column name isn't found
-        transformed_df['proto'] = 'unknown'
-        categorical_columns.append('proto')
+    # 6. Identify categorical columns for encoding
+    cat_cols = X.select_dtypes(include=['object', 'category']).columns.tolist()
     
-    # Add the service column
-    if 'service' in df.columns:
-        transformed_df['service'] = df['service']
-        categorical_columns.append('service')
-    else:
-        transformed_df['service'] = '-'
-        categorical_columns.append('service')
-    
-    # Add the state column
-    if 'state' in df.columns:
-        transformed_df['state'] = df['state']
-        categorical_columns.append('state')
-    else:
-        transformed_df['state'] = '-'
-        categorical_columns.append('state')
-    
-    # Add all numeric features
-    for col in df.columns:
-        if col not in categorical_columns:
-            transformed_df[col] = df[col]
-    
-    # Create X dataframe without the label column (assuming label is at the end)
-    # If there's no label column, we'll use all columns
-    X = transformed_df
-    
-    # Get starting feature names for tracking
-    original_feature_names = list(X.columns)
-    
-    # One-hot encode the categorical columns (proto, service, state)
-    categorical_indices = [0, 1, 2]  # Indices of categorical columns in the transformed_df
+    # 7. ColumnTransformer for encoding and scaling
     ct = ColumnTransformer(
-        transformers=[('encoder', OneHotEncoder(), categorical_indices)], 
+        transformers=[
+            ('encoder', OneHotEncoder(handle_unknown='ignore'), cat_cols)
+        ],
         remainder='passthrough'
     )
-    X_transformed = np.array(ct.fit_transform(X))
+    X_processed = ct.fit_transform(X)
     
-    # Create feature names list
-    feature_names = []
-    
-    # Find the unique values for each categorical feature to build the feature names
-    cat_features = ['proto', 'service', 'state']
-    for i, col in enumerate(cat_features):
-        unique_values = X[col].unique()
-        for val in unique_values[::-1][1:]:  # Skip the reference category
-            feature_names.append(f"{col}_{val}")
-    
-    # Add the names of the passthrough columns
-    for col in original_feature_names[3:]:
-        feature_names.append(col)
-    
-    # Apply scaling to numerical features (everything after one-hot encoded columns)
-    # Get the number of encoded columns
-    n_encoded_cols = X_transformed.shape[1] - len(original_feature_names) + 3
-    
-    # Create a scaler
+    # 8. Scale numeric features (after encoding)
+    # Find the index where numeric features start (after one-hot encoded columns)
+    n_cat_features = ct.transformers_[0][1].fit(X[cat_cols]).get_feature_names_out().shape[0]
     scaler = StandardScaler()
+    X_processed = np.array(X_processed, dtype=np.float64)
+    X_processed[:, n_cat_features:] = scaler.fit_transform(X_processed[:, n_cat_features:])
     
-    # Create a copy to avoid modifying the original array
-    X_scaled = X_transformed.copy()
-    
-    # Scale only the numerical columns
-    X_scaled[:, n_encoded_cols:] = scaler.fit_transform(X_transformed[:, n_encoded_cols:])
-    
-    return X_scaled, feature_names
+    return X_processed
+
+# Usage:
+# X, y = preprocess_df(df)
+
 
 # Example usage:
 # X_transformed, feature_names = transform_network_log_data(df)
@@ -196,12 +156,9 @@ def get_time (request):
         #     df[f'Extra_{df.shape[1] + 1}'] = np.nan
 
         print(df.shape)  # Should print (num_rows, 56)
-        # X, features = transform_network_log_data(df)
-        from sklearn.compose import ColumnTransformer
-        from sklearn.preprocessing import OneHotEncoder
-        ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1,2,3])], remainder='passthrough')
-        df = np.array(ct.fit_transform(df))
-        print(np.shape(df))
+        df = preprocess_df(df)
+        
+        print(df.shape) 
         
         y = model.predict(df)
         
