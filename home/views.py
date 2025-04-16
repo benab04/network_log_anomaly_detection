@@ -4,10 +4,13 @@ from datetime import datetime
 import json
 
 from home.utils import process, _load_model, json_to_dataframe
-from .core import MLIPBlocker, with_ip_blocking
+# from .core import MLIPBlocker, with_ip_blocking
+
+from django_attack_blocker import MLIPBlocker,with_ip_blocking
 
 blocker = MLIPBlocker(
     model_path='model.joblib',
+    encoder_path='encoder.pkl',
     # blocklist_path='blocklist.txt',
     block_threshold=0.5,
     # trusted_ips=['192.168.1.1', '10.0.0.0/8'],  # IPs that are always allowed
