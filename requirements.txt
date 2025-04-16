@@ -5,3 +5,5 @@ numpy
 pandas
 scikit_learn
 gunicorn
+djangorestframework
+django-cors-headers
