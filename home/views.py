@@ -17,9 +17,12 @@ blocker = MLIPBlocker(
     # blocked_ips=['1.2.3.4', '5.6.7.0/24']  # IPs that are always blocked
 )
 
-@with_ip_blocking(blocker)
 def home_page(request):
     return JsonResponse({"message": "Welcome to the home page!"})
+
+@with_ip_blocking(blocker)
+def test_endpoint(request):
+    return JsonResponse({"message": "Welcome to the django attack blocker testing page!"})
 
 
 @with_ip_blocking(blocker)
