@@ -50,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 'home.ipblocker.AttackBlockerMiddleware',
 ]
 
 ROOT_URLCONF = "server.urls"
@@ -129,3 +130,19 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Attack Blocker settings
+ATTACK_BLOCKER_ENABLED = True
+ATTACK_BLOCKER_MODEL_PATH = 'rf_model_2.pkl'  # Update with your model path
+ATTACK_BLOCKER_THRESHOLD = 0.8  # Probability threshold for blocking (between 0 and 1)
+ATTACK_BLOCKER_DURATION = 60  # Block duration in minutes (None for permanent)
+ATTACK_BLOCKER_WHITELIST = [
+    '127.0.0.1',
+    '192.168.1.0/24',  # Example CIDR notation for a subnet
+]
+ATTACK_BLOCKER_EXEMPT_PATHS = [
+    '/admin',
+    '/static',
+    '/api/allowed-endpoint',
+]
