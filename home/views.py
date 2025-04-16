@@ -17,6 +17,17 @@ blocker = MLIPBlocker(
     # blocked_ips=['1.2.3.4', '5.6.7.0/24']  # IPs that are always blocked
 )
 
+blocker2 = MLIPBlocker(
+    model_path='model.joblib',
+    encoder_path='encoder.pkl',
+    # blocklist_path='blocklist.txt',
+    block_threshold=0.5,
+    block_timeout=10,
+    # trusted_ips=['192.168.1.1', '10.0.0.0/8'],  # IPs that are always allowed
+    # blocked_ips=['1.2.3.4', '5.6.7.0/24']  # IPs that are always blocked
+)
+
+
 def home_page(request):
     return JsonResponse({"message": "Welcome to the home page!"})
 
@@ -24,6 +35,10 @@ def home_page(request):
 def test_endpoint(request):
     return JsonResponse({"message": "Welcome to the django attack blocker testing page!"})
 
+
+@with_ip_blocking(blocker2)
+def test_endpoint_2(request):
+    return JsonResponse({"message": "Welcome to the temporary django attack blocker testing page!"})
 
 @with_ip_blocking(blocker)
 def get_time (request):
