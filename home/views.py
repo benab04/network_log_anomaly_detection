@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from datetime import datetime
 import json
 
-from home.utils import process, _load_model, json_to_dataframe
+# from home.utils import process, _load_model, json_to_dataframe
 # from .core import MLIPBlocker, with_ip_blocking
 
 from django_attack_blocker import MLIPBlocker,with_ip_blocking
@@ -40,36 +40,36 @@ def test_endpoint(request):
 def test_endpoint_2(request):
     return JsonResponse({"message": "Welcome to the temporary django attack blocker testing page!"})
 
-@with_ip_blocking(blocker)
-def get_time (request):
+# @with_ip_blocking(blocker)
+# def get_time (request):
     
-    if request.method != 'POST':
-        return JsonResponse({"error": "Method not allowed"}, status=405)
+#     if request.method != 'POST':
+#         return JsonResponse({"error": "Method not allowed"}, status=405)
     
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
+#     now = datetime.now()
+#     current_time = now.strftime("%H:%M:%S")
 
-    # mediator = create_mediator('rf_model.pkl', 'blocklist.txt')
-    ## Process through mediator
-    # response, status_code = handle_api_request(request_info, mediator)
+#     # mediator = create_mediator('rf_model.pkl', 'blocklist.txt')
+#     ## Process through mediator
+#     # response, status_code = handle_api_request(request_info, mediator)
     
-    # print(response, status_code)
-    model =_load_model('rf_model_2.pkl')
+#     # print(response, status_code)
+#     model =_load_model('rf_model_2.pkl')
     
-    try:
-        request_body = request.body.decode('utf-8')
+#     try:
+#         request_body = request.body.decode('utf-8')
         
-        df= json_to_dataframe(json.loads(request_body)) 
+#         df= json_to_dataframe(json.loads(request_body)) 
         
-        X = process(df)
+#         X = process(df)
         
-        y = model.predict(X)
+#         y = model.predict(X)
         
-        print("Output: ", y)
+#         print("Output: ", y)
         
-    except Exception as e:
-        print("Error decoding request body:", str(e))
+#     except Exception as e:
+#         print("Error decoding request body:", str(e))
         
         
-    return JsonResponse({"time": current_time})
+#     return JsonResponse({"time": current_time})
     
