@@ -6,7 +6,7 @@ import json
 # from home.utils import process, _load_model, json_to_dataframe
 # from .core import MLIPBlocker, with_ip_blocking
 
-from django_attack_blocker import MLIPBlocker,with_ip_blocking
+from django_attack_blocker import MLIPBlocker,with_ip_blocking, unblock_ip, block_ip, get_blocker_stats
 
 blocker = MLIPBlocker(
     model_path='model.joblib',
@@ -33,7 +33,7 @@ blocker = MLIPBlocker(
 def home_page(request):
     return JsonResponse({"message": "Welcome to the home page!"})
 
-@with_ip_blocking(blocker)
+@with_ip_blocking(blocker, type="permanent")
 def test_endpoint(request):
     return JsonResponse({"message": "Welcome to the django attack blocker testing page!"})
 
@@ -41,6 +41,47 @@ def test_endpoint(request):
 @with_ip_blocking(blocker)
 def test_endpoint_2(request):
     return JsonResponse({"message": "Welcome to the temporary django attack blocker testing page!"})
+
+
+def unblock_ip_view(request):
+    try:
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        unblock_ip(blocker, ip)
+        return JsonResponse({"message": f"IP unblocked successfully."})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+    
+def block_ip_view(request):
+    try:
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        
+        
+        try:
+            request_body = json.loads(request.body.decode('utf-8'))
+            duration = request_body.get('duration', None)
+        except Exception as e:
+            print(e)
+        
+        
+        block_ip(blocker, ip, duration)
+        return JsonResponse({"message": f"IP blocked successfully."})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+    
+def get_blocker_stats_view(request):
+    try:
+        stats = get_blocker_stats(blocker=blocker)
+        return JsonResponse(stats)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
 
 # @with_ip_blocking(blocker)
 # def get_time (request):
