@@ -275,7 +275,6 @@ To enable the attack blocker:
 
    ```json
    {
-     "ip": "192.168.1.1",
      "duration": 20
    }
    ```
