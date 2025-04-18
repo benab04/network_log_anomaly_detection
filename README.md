@@ -319,7 +319,7 @@ If you encounter issues such as memory limitations, use this alternative command
 gunicorn --config gunicorn_config.py server.wsgi
 ```
 
-The `gunicorn_config.p` is present in the root directory of the folder(where `manage.py` is present) and it contains additional commands to configure gunicorn.
+The `gunicorn_config.py` is present in the root directory of the folder(where `manage.py` is present) and it contains additional commands to configure gunicorn.
 
 - A production server has been deployed on Render following the above steps at
   [https://network-log-anomaly-detection.onrender.com](https://network-log-anomaly-detection.onrender.com).
