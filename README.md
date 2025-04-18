@@ -78,7 +78,7 @@ The server will start at `http://127.0.0.1:8000/`
 
 To enable the attack blocker:
 
-1. Ensure you have the required model file (`model.joblib`) and the encoder file (`encoder.pkl`)
+1. Ensure you have the required model file (`model.joblib`) and the encoder file (`encoder.pkl`). These files are already present in the repository, so there's no need to download it again.
 
 ## API Endpoints
 
