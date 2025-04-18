@@ -1,5 +1,5 @@
 Django
-django_attack_blocker==1.0.1
+django_attack_blocker
 joblib
 numpy
 pandas
