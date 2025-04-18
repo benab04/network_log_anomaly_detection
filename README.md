@@ -274,10 +274,10 @@ To enable the attack blocker:
    - Body (Optional, if empty, permanently blocks the IP of origin)
 
    ```json
-    {
-        "ip":192.168.1.1,
-        "duration" : 20
-    }
+   {
+     "ip": "192.168.1.1",
+     "duration": 20
+   }
    ```
 
    - Expected Response: **200 OK**
